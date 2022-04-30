@@ -7,10 +7,10 @@ import cors from "cors"; // makes url as origin
 import helmet from "helmet"; //security library
 
 // microservices route
-import Auth from "./API/Auth/index";
+import Auth from "./API/Auth/index.js";
 
 // database connection
-import ConnectDB from "./database/connection";
+import ConnectDB from "./database/connection.js";
 
 const zomato = express();
 

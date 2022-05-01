@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const UserSchema = new mongoose.Schema(
   {
@@ -27,6 +27,19 @@ UserSchema.statics.findByEmailAndPhone = async ({ email, phoneNumber }) => {
   }
 
   return false;
+};
+
+UserSchema.statics.findByEmailAndPassword = async ({ email, password }) => {
+  // check whether email & phone number exist
+  const user = await UserModel.findOne({ email });
+
+  if (!user) throw new Error("User does not exist.!");
+
+  const doesPasswordMatch = await bcrypt.compare(password, user.password);
+
+  if (!doesPasswordMatch) throw new Error("Invalid Passord.!");
+
+  return user;
 };
 
 UserSchema.pre("save", function (next) {

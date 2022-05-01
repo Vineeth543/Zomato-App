@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 // Models
 import { UserModel } from "../../database/user/index.js";
 
-const Router = express.Router();  
+const Router = express.Router();
 
 /*
 Route    /signup
@@ -18,29 +18,14 @@ Method   Post
 
 Router.post("/signup", async (req, res) => {
   try {
-    const { email, password, fullname, phoneNumber } = req.body.credentials;
-
     // check whether email & phone number exist
-    const checkUserByEmail = await UserModel.findOne({ email });
-    const checkUserByPhone = await UserModel.findOne({ phoneNumber });
-
-    if (checkUserByEmail || checkUserByPhone) {
-      return res.json({ error: "User already exist!" });
-    }
-
-    // hash password
-    const bcryptSalt = await bcrypt.genSalt(8);
-
-    const hashedPassword = await bcrypt.hash(password, bcryptSalt);
+    await UserModel.findByEmailAndPhone(req.body.credentials);
 
     // save to database
-    await UserModel.create({
-      ...req.body.credentials,
-      password: hashedPassword,
-    });
+    const newUser = await UserModel.create(req.body.credentials);
 
     // generate JWT auth tokens
-    const token = jwt.sign({ user: { fullname, email } }, "ZomatoApp");
+    const token = newUser.generateJwtTokens();
 
     // return
     return res.status(200).json({ token, status: "Success" });

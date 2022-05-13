@@ -2,9 +2,11 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import passport from "passport";
 
 // Models
 import { UserModel } from "../../database/user/index.js";
+import { authenticate } from "passport/lib";
 
 const Router = express.Router();
 
@@ -57,5 +59,38 @@ Router.post("/signin", async (req, res) => {
   }
 });
 
+/*
+Route    /google
+Des      Google Signin
+Params   None
+Access   Public
+Method   GET
+*/
+
+Router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  })
+);
+
+/*
+Route    /google/callback
+Des      Google Signin callback
+Params   None
+Access   Public
+Method   GET
+*/
+
+Router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
+  (req, res) => {
+    return res.json({ token: req.session.passport.user.token });
+  }
+);
 
 export default Router;

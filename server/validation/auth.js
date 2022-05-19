@@ -13,3 +13,12 @@ export const validateSignup = (userData) => {
 
   return Schema.validateAsync(userData);
 };
+
+export const validateSignin = (userData) => {
+  const Schema = joi.object({
+    email: joi.string().email(),
+    password: joi.string().min(8),
+  });
+
+  return Schema.validateAsync(userData);
+};

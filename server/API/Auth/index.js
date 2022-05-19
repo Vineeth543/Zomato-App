@@ -8,7 +8,7 @@ import passport from "passport";
 import { UserModel } from "../../database/user/index.js";
 
 // Validation
-import { validateSignup } from "../../validation/auth.js";
+import { validateSignup, validateSignin } from "../../validation/auth.js";
 
 const Router = express.Router();
 
@@ -51,6 +51,9 @@ Method   Post
 
 Router.post("/signin", async (req, res) => {
   try {
+    // validate
+    await validateSignin(req.body.credentials);
+
     // check whether email & phone number exist
     const user = await UserModel.findByEmailAndPassword(req.body.credentials);
 

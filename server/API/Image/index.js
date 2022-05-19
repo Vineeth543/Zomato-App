@@ -6,7 +6,7 @@ import multer from "multer";
 import { ImageModel } from "../../database/allModels.js";
 
 // Utilities
-import { s3Upload } from "../../Utils/AWS/s3.js";
+import { s3Upload } from "../../utils/AWS/s3.js";
 
 const Router = express.Router();
 

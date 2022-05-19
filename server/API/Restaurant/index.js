@@ -1,11 +1,11 @@
 // Import libraries
-import express, { json } from "express";
+import express from "express";
 import passport from "passport";
 
 // Import Database Model
-import { RestaurantModel } from "../../database/allModels";
+import { RestaurantModel } from "../../database/allModels.js";
 
-const Router = express.Router;
+const Router = express.Router();
 
 /*
 Route    /
@@ -18,7 +18,12 @@ Method   GET
 Router.get("/", async (req, res) => {
   try {
     const { city } = req.query;
+
     const restaurants = await RestaurantModel.find({ city });
+
+    if (!restaurants)
+      return res.status(404).json({ error: "Restaurant Not Found." });
+
     return res.json({ restaurants });
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -36,9 +41,12 @@ Method   GET
 Router.get("/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
+
     const restaurant = await RestaurantModel.findOne({ _id });
+
     if (!restaurant)
       return res.status(404).json({ error: "Restaurant Not Found." });
+
     return res.json({ restaurant });
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -57,13 +65,16 @@ Method   GET
 Router.get("/search", async (req, res) => {
   try {
     const { searchString } = req.body;
-    const restaurants = await RestaurantModel.find({
+
+    const restaurant = await RestaurantModel.find({
       name: { $regex: searchString, $options: "i" },
     });
+
     if (!restaurant)
       return res
         .status(404)
         .json({ error: `No Restaurant matched with ${searchString}` });
+
     return res.json({ restaurant });
   } catch (error) {
     return res.status(500).json({ error: error.message });

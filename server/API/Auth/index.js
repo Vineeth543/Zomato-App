@@ -6,7 +6,7 @@ import passport from "passport";
 
 // Models
 import { UserModel } from "../../database/user/index.js";
-import { authenticate } from "passport/lib";
+// import { authenticate } from "passport/lib";
 
 const Router = express.Router();
 

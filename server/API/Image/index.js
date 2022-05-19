@@ -17,7 +17,7 @@ const upload = multer({ storage });
 /*
 Route    /
 Des      Upload given image to S3 bucket and saves file link to mongoDB
-Params   id
+Params   _id
 Access   Public
 Method   POST
 */

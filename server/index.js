@@ -11,10 +11,12 @@ import passport from "passport";
 import googleAuthConfig from "./config/google.config.js";
 
 // microservices route
-import Auth from "./API/Auth/index.js";
-import Restaurant from "./API/Restaurant/index.js";
-import Food from "./API/Food/index.js";
-import Image from "./API/Image/index.js";
+import Auth from "./API/Auth";
+import Restaurant from "./API/Restaurant";
+import Food from "./API/Food";
+import Image from "./API/Image";
+import Order from "./API/Orders";
+import Review from "./API/Reviews";
 
 // database connection
 import ConnectDB from "./database/connection.js";
@@ -35,6 +37,8 @@ zomato.use("/auth", Auth);
 zomato.use("/restaurant", Restaurant);
 zomato.use("/food", Food);
 zomato.use("/image", Image);
+zomato.use("/order", Order);
+zomato.use("/review", Review);
 
 zomato.get("/", (req, res) => res.json({ message: "Setup Success" }));
 

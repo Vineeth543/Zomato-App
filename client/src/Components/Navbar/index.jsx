@@ -6,7 +6,7 @@ import { RiSearch2Line } from "react-icons/ri";
 
 const MobileNav = () => {
   return (
-    <div className="flex w-full items-center justify-between md:hidden">
+    <div className="flex w-full items-center justify-between lg:hidden">
       <div className="w-32">
         <img
           src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
@@ -26,44 +26,46 @@ const MobileNav = () => {
   );
 };
 
-const MediumNav = () => {
+const LargeNav = () => {
   return (
-    <div className="hidden md:flex w-full items-center justify-between gap-3 lg:w-3/4">
-      <div className="w-32">
-        <img
-          src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
-          alt="logo"
-          className="w-full h-full"
-        />
-      </div>
-      <div className="w-full bg-white shadow-md p-3 flex items-center gap-3 border border-gray-200 rounded">
-        <div className="flex items-center gap-3 border-r-2 border-gray-300 pr-2">
-          <span className="text-zomato-400">
-            <MdLocationPin />
-          </span>
-          <input
-            type="text"
-            placeholder="Manipal, Udupi"
-            className="focus:outline-none"
-          />
-          <RiArrowDownSFill />
-        </div>
-        <div className="flex items-center gap-3 w-full">
-          <RiSearch2Line />
-          <input
-            type="search"
-            placeholder="Search for restaurant, cuisine or a dish"
-            className="focus:outline-none w-full"
+    <div className="container px-20 mx-auto">
+      <div className="hidden lg:flex w-full items-center justify-between gap-4">
+        <div className="w-32">
+          <img
+            src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
+            alt="logo"
+            className="w-full h-full"
           />
         </div>
-      </div>
-      <div className="flex gap-3">
-        <button className="text-gray-400 text-xl hover:text-gray-800">
-          Login
-        </button>
-        <button className="text-gray-400 text-xl hover:text-gray-800">
-          Signup
-        </button>
+        <div className="w-3/4 bg-white shadow-md p-3 flex items-center gap-4 border border-gray-200 rounded">
+          <div className="flex items-center gap-3 border-r-2 border-gray-300 pr-2">
+            <span className="text-zomato-400">
+              <MdLocationPin />
+            </span>
+            <input
+              type="text"
+              placeholder="Manipal, Udupi"
+              className="focus:outline-none"
+            />
+            <RiArrowDownSFill />
+          </div>
+          <div className="flex items-center gap-3 w-full">
+            <RiSearch2Line />
+            <input
+              type="search"
+              placeholder="Search for restaurant, cuisine or a dish"
+              className="focus:outline-none w-full"
+            />
+          </div>
+        </div>
+        <div className="ml-28 flex gap-4">
+          <button className="text-gray-400 text-xl hover:text-gray-800">
+            Login
+          </button>
+          <button className="text-gray-400 text-xl hover:text-gray-800">
+            Signup
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -74,7 +76,7 @@ const Navbar = () => {
     <>
       <nav className="p-4 flex bg-white shadow-md w-full items-center">
         <MobileNav />
-        <MediumNav />
+        <LargeNav />
       </nav>
     </>
   );

@@ -28,7 +28,7 @@ const MobileNav = () => {
 
 const LargeNav = () => {
   return (
-    <div className="container px-20 mx-auto">
+    <div className="hidden lg:inline container px-20 mx-auto">
       <div className="hidden lg:flex w-full items-center justify-between gap-4">
         <div className="w-32">
           <img

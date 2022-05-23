@@ -1,7 +1,7 @@
 import React from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
-import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
+import { RiArrowDownSFill } from "react-icons/ri";
 import { RiSearch2Line } from "react-icons/ri";
 
 const MobileNav = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { BsHandbag } from "react-icons/bs";
 import { IoFastFoodOutline, IoNutritionOutline } from "react-icons/io5";
 import { GiWineGlass } from "react-icons/gi";
@@ -102,13 +102,11 @@ const LargeTabs = () => {
 
   const { type } = useParams();
 
-  if (!{ type }) return <></>;
-
   return (
     <>
       <div className="hidden lg:flex gap-20 container px-20 my-8 mx-auto">
         {allTypes.map((items) => (
-          <Link to={`${items.id}`}>
+          <Link to={`${items.id}`} key={items.id}>
             <div
               className={classnames(
                 "flex items-center gap-3 pb-2 transition duration-100 ease-in-out",
